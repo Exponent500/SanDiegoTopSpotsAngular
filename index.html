@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html ng-app="sanDiegoTopSpots" lang="en"> <!-- this ng-app directive will Bootstrap our angular JS app at this point in the DOM and will also engage the Angular compiler to start at this point. The value in ng-app should match the corresponding angular.module delceration within the app.js file used -->
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>San Diego Top Spots Angular</title>
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+        <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
+        <!-- endbower -->
+
+        <!-- inject:css -->
+        <link rel="stylesheet" href="/app/styles/main.css">
+        <!-- endinject -->  
+    </head>
+
+    <!-- Binds Angular controller MainController to body element. This is so it can let $scope target anything within this element -->
+    <body ng-controller="MainController"> 
+        <div class="container">
+            
+            <!-- Table listing San Diego's Top Spots, which are within the local topspots.json file located at the webroot-->
+            <table class="table table-striped">
+                <caption class="h2">San Diego Top Spots Angular</caption>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody id="table-data">
+                    <tr ng-repeat="data in topspots"> <!-- stores topspots content into data and loops through it to populate the table-->
+                        <td>
+                            {{data.name}} <!-- grabs the name values from data -->
+                        </td>
+                        <td>
+                            {{data.description}} <!-- grabs the description values from data -->
+                        </td>
+                        <td>
+                            <a class='btn btn-primary' href="https://www.google.com/maps?q={{data.location[0]}}, {{data.location[1]}}">Open In Google Maps</a> <!-- creates button links that open up google maps to the locations listed in data-->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Form to add new locations to topspots.json (or to HTML table above and not the JSON file)-->
+            <h1>Add a new Hotspot</h1>
+            <form role="form" ng-submit="addRow()">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input class="form-control" type="text" ng-model="name" name="name">
+                </div>
+                <div class="form group">
+                    <label for="description">Description</label>
+                    <input class="form-control" type="text" ng-model="description" name="description">
+                </div>
+                <div class="form-group">
+                    <label for="latitude">Latitude</label>
+                    <input class="form-control" type="text" ng-model="latitude" name="latitude">
+                </div>
+                <div class="form-group">
+                    <label for="longitude">Longitude</label>
+                    <input class="form-control" type="text" ng-model="longitude" name="longitude">
+                </div>                    
+                <div class="form-group"> 
+                     <input type="submit" class="btn btn-primary" value="Submit"></button>
+                </div>
+            </form>
+
+        </div>
+        
+        <!-- insert Google map with markers -->
+        <ui-gmap-google-map center='map.center' zoom='map.zoom'> <!-- inserts the default map -->
+            <ui-gmap-markers models="markers" coords="'coords'" idkey="'name'"></ui-gmap-markers> <!-- adds the map markers -->
+        </ui-gmap-google-map> 
+
+        <!-- bower:js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/toastr/toastr.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+        <script src="bower_components/lodash/lodash.js"></script>
+        <script src="bower_components/markerclustererplus/src/markerclusterer.js"></script>
+        <script src="bower_components/google-maps-utility-library-v3-markerwithlabel/dist/markerwithlabel.js"></script>
+        <script src="bower_components/google-maps-utility-library-v3-infobox/dist/infobox.js"></script>
+        <script src="bower_components/google-maps-utility-library-v3-keydragzoom/dist/keydragzoom.js"></script>
+        <script src="bower_components/js-rich-marker/src/richmarker.js"></script>
+        <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+        <!-- endbower -->
+
+        <!-- inject:js -->
+        <script src="/app/app.js"></script>
+        <!-- endinject -->
+        <!-- google maps Javascript API -->
+        <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4KD2Euxaq1AGeF_JFKcSuGVSMbvv3v3U&sensor=false" async defer></script> -->
+    </body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "name": "SanDiegoTopSpots",
+  "main": "gulpfile.js",
+  "homepage": "https://github.com/Exponent500/SanDiegoTopSpots",
+  "authors": [
+    "Exponent500 <reuvenkishon@gmail.com>"
+  ],
+  "description": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "animate.css": "^3.5.2",
+    "bulma": "^0.2.1",
+    "toastr": "^2.1.3",
+    "angular": "^1.5.8",
+    "angular-google-maps": "^2.4.0"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css"
+      ]
+    }
+  }
+}
