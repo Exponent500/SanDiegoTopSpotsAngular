@@ -30,7 +30,7 @@
                         <th>Location</th>
                     </tr>
                 </thead>
-                <tbody id="table-data">
+                <tbody>
                     <tr ng-repeat="data in topspots"> <!-- stores topspots content into data and loops through it to populate the table-->
                         <td>
                             {{data.name}} <!-- grabs the name values from data -->
@@ -45,7 +45,7 @@
                 </tbody>
             </table>
 
-            <!-- Form to add new locations to topspots.json (or to HTML table above and not the JSON file)-->
+            <!-- Form to add new rows to topspots table -->
             <h1>Add a new Hotspot</h1>
             <form role="form" ng-submit="addRow()">
                 <div class="form-group">
@@ -93,6 +93,7 @@
         <!-- inject:js -->
         <script src="/app/app.js"></script>
         <!-- endinject -->
+        
         <!-- google maps Javascript API -->
         <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4KD2Euxaq1AGeF_JFKcSuGVSMbvv3v3U&sensor=false" async defer></script> -->
     </body>
